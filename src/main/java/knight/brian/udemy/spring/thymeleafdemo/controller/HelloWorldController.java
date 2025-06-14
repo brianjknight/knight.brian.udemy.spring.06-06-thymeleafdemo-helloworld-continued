@@ -3,7 +3,10 @@ package knight.brian.udemy.spring.thymeleafdemo.controller;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDateTime;
@@ -12,7 +15,7 @@ import java.time.LocalDateTime;
 public class HelloWorldController {
 
     // controller method to show initial form
-    @RequestMapping("/showForm")
+    @GetMapping("/showForm")
     public String showForm() {
         return "helloworld-form";
     }
@@ -27,7 +30,7 @@ public class HelloWorldController {
     }
 
     // processing HTML form manipulating data for the Model
-    @RequestMapping("/processFormVersionTwo")
+    @RequestMapping(path="/processFormVersionTwo", method=RequestMethod.GET)
     public String letsShout(HttpServletRequest request, Model model) {
 
         // read the request parameter from the form
@@ -47,7 +50,7 @@ public class HelloWorldController {
     }
 
     // processing HTML form binding request parameters
-    @RequestMapping("/processFormVersionThree")
+    @PostMapping("/processFormVersionThree")
     public String processFormVersionThree(
             @RequestParam("studentName") String theName, Model model) {
 
